@@ -1,0 +1,19 @@
+#INPUT 
+s = "bcabc"
+#Output
+"abc"
+
+#OUTPUT
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        stack=[]
+        sent=set()
+        last={c: i for i,c in enumerate(s)}
+        print(last)
+        for i ,c in enumerate(s):
+            if c not in sent:
+                while stack and c<stack[-1] and i < last[stack[-1]]:
+                    sent.discard(stack.pop())
+                sent.add(c)
+                stack.append(c)
+        return "".join(stack)
